@@ -12,7 +12,6 @@ data:
   SERVER_SHUTDOWN_TIMEOUT: "30"
   # Uncomment the next line to set a server password
   # SERVER_PASSWORD: "MyServerPassword"
-  variable: "test"
   ARK_ADMIN_PASSWORD: "MyArkAdminPassword"
   RCON_PORT: "32330"
   DISABLE_BATTLEYE: "1"
