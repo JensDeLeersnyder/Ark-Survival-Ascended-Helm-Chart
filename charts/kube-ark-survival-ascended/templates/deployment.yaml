@@ -28,10 +28,43 @@ spec:
         pullPolicy: IfNotPresent
         env:
         - name: RCON_PORT
-          value: "{{ .Values.ports.serverport }}"
+          value: "{{ .Values.env.RCON_PORT }}"
         - name: SERVER_PORT
-          value: "{{ .Values.ports.rconport }}"
-          {{- toYaml .Values.env | indent 12 }}
+          value: "{{ .Values.env.SERVER_PORT }}"
+        - name: ASA_APPID
+          value: "{{ .Values.env.ASA_APPID }}"
+        - name: SERVER_MAP
+          value: "{{ .Values.env.SERVER_MAP }}"
+        - name: SESSION_NAME
+          value: "{{ .Values.env.SESSION_NAME }}"
+        - name: MAX_PLAYERS
+          value: "{{ .Values.env.MAX_PLAYERS }}"
+        - name: SERVER_SHUTDOWN_TIMEOUT
+          value: "{{ .Values.env.SERVER_SHUTDOWN_TIMEOUT }}"
+        - name: ARK_ADMIN_PASSWORD
+          value: "{{ .Values.env.ARK_ADMIN_PASSWORD }}"
+        - name: DISABLE_BATTLEYE
+          value: "{{ .Values.env.DISABLE_BATTLEYE }}"
+        - name: MODS
+          value: "{{ .Values.env.MODS }}"
+        - name: ARK_EXTRA_OPTS
+          value: "{{ .Values.env.ARK_EXTRA_OPTS }}"
+        - name: ARK_EXTRA_DASH_OPTS
+          value: "{{ .Values.env.ARK_EXTRA_DASH_OPTS }}"
+        - name: PUID
+          value: "{{ .Values.env.PUID }}"
+        - name: PGID
+          value: "{{ .Values.env.PGID }}"
+        - name: TINI_VERSION
+          value: "{{ .Values.env.TINI_VERSION }}"
+        - name: LOG_FILE
+          value: "{{ .Values.env.LOG_FILE }}"
+        - name: PID_FILE
+          value: "{{ .Values.env.PID_FILE }}"
+        - name: STEAM_COMPAT_CLIENT_INSTALL_PATH
+          value: "{{ .Values.env.STEAM_COMPAT_CLIENT_INSTALL_PATH }}"
+        - name: STEAM_COMPAT_DATA_PATH
+          value: "{{ .Values.env.STEAM_COMPAT_DATA_PATH }}"
         resources:
           requests:
             memory: {{ .Values.resources.requests.memory }}
@@ -40,10 +73,10 @@ spec:
             memory: {{ .Values.resources.limits.memory }}
         ports:
         - name: server-port
-          containerPort: {{ .Values.ports.serverport }}
+          containerPort: {{ .Values.env.SERVER_PORT }}
           protocol: UDP
         - name: rcon-port
-          containerPort: {{ .Values.ports.rconport }}
+          containerPort: {{ .Values.env.RCON_PORT }}
           protocol: TCP
         volumeMounts:
           - name: {{ .Release.Name }}-data

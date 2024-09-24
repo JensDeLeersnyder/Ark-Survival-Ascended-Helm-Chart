@@ -19,47 +19,26 @@ resources:
     cpu: 2
     memory: 20Gi
 
-# internal ports
-ports:
-  serverport: 7790
-  rconport: 32330    
-
 env:
-  - name: ASA_APPID
-    value: "2430930"
-  - name: SERVER_MAP
-    value: "Aberration_WP"
-  - name: SESSION_NAME
-    value: "JensServer"
-  - name: MAX_PLAYERS
-    value: "10"
-  - name: SERVER_SHUTDOWN_TIMEOUT
-    value: "30"
-  - name: ARK_ADMIN_PASSWORD
-    value: "MyArkAdminPassword"
-  - name: DISABLE_BATTLEYE
-    value: "1"
-  - name: MODS
-    value: "935408,947033,937546,931047,928708,933099,939228,950914,938777,930494"
-  - name: ARK_EXTRA_OPTS
-    value: "?ServerCrosshair=true?OverrideStructurePlatformPrevention=true?OverrideOfficialDifficulty=5.0?ShowFloatingDamageText=true?AllowFlyerCarryPvE=true"
-  - name: ARK_EXTRA_DASH_OPTS
-    value: "-ForceAllowCaveFlyers -ForceRespawnDinos -AllowRaidDinoFeeding=true -ActiveEvent=Summer"
-  - name: PUID
-    value: "1000"
-  - name: PGID
-    value: "1000"
-  - name: TINI_VERSION
-    value: "v0.19.0"
-  - name: LOG_FILE
-    value: "/opt/arkserver/ShooterGame/Saved/Logs/ShooterGame.log"
-  - name: PID_FILE
-    value: "/opt/arkserver/.server.pid"
-  - name: STEAM_COMPAT_CLIENT_INSTALL_PATH
-    value: "/home/arkuser/.steam/steam"
-  - name: STEAM_COMPAT_DATA_PATH
-    value: "/home/arkuser/.steam/steam/steamapps/compatdata/2430930"
-
+  SERVER_PORT: 7790
+  RCON_PORT: 32330
+  ASA_APPID: 2430930
+  SERVER_MAP: Aberration_WP
+  SESSION_NAME: JensServer
+  MAX_PLAYERS: 10
+  SERVER_SHUTDOWN_TIMEOUT: 30
+  ARK_ADMIN_PASSWORD: MyArkAdminPassword
+  DISABLE_BATTLEYE: 1
+  MODS: 935408,947033,937546,931047,928708,933099,939228,950914,938777,930494
+  ARK_EXTRA_OPTS: ?ServerCrosshair=true?OverrideStructurePlatformPrevention=true?OverrideOfficialDifficulty=5.0?ShowFloatingDamageText=true?AllowFlyerCarryPvE=true
+  ARK_EXTRA_DASH_OPTS: -ForceAllowCaveFlyers -ForceRespawnDinos -AllowRaidDinoFeeding=true -ActiveEvent=Summer
+  PUID: 1000
+  PGID: 1000
+  TINI_VERSION: v0.19.0
+  LOG_FILE: /opt/arkserver/ShooterGame/Saved/Logs/ShooterGame.log
+  PID_FILE: /opt/arkserver/.server.pid
+  STEAM_COMPAT_CLIENT_INSTALL_PATH: /home/arkuser/.steam/steam
+  STEAM_COMPAT_DATA_PATH: /home/arkuser/.steam/steam/steamapps/compatdata/2430930
 # Service these are the ports that will be used to expose the deployment to the outside
 service:
   ports:
