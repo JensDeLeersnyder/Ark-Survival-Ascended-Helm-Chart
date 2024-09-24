@@ -27,6 +27,10 @@ spec:
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         pullPolicy: IfNotPresent
         env:
+        - name: RCON_PORT
+          value: "{{ .Values.ports.server-port}}"
+        - name: SERVER_PORT
+          value: "{{ .Values.ports.rcon-port}}"
           {{- toYaml .Values.env | indent 12 }}
         resources:
           requests:

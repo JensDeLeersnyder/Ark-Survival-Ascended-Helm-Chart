@@ -7,14 +7,14 @@ spec:
   type: NodePort
   ports:
   - name: server-port
-    port: {{ (index (pluck "value" (where .Values.env "name" "SERVER_PORT")) 0) }}
+    port: {{ .Values.ports.server-port}}
     protocol: UDP
-    targetPort: {{ (index (pluck "value" (where .Values.env "name" "SERVER_PORT")) 0) }}
+    targetPort: {{ .Values.ports.server-port}}
     nodePort: {{ .Values.service.ports.server-port }} # You can set this to a port within the 30000-32767 range
   - name: rcon-port
-    port: {{ (index (pluck "value" (where .Values.env "name" "RCON_PORT")) 0) }}
+    port: {{ .Values.ports.rcon-port}}
     protocol: TCP
-    targetPort: {{ (index (pluck "value" (where .Values.env "name" "RCON_PORT")) 0) }}
+    targetPort: {{ .Values.ports.rcon-port}}
     nodePort: {{ .Values.service.ports.rcon-port }} # You can set this to a port within the 30000-32767 range
   selector:
     app: {{ .Release.Name }}
