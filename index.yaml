@@ -11,4 +11,14 @@ entries:
     urls:
     - https://github.com/JensDeLeersnyderPXL/Ark-Survival-Ascended-Helm-Chart/releases/download/ark-survival-ascended-1.0.1/ark-survival-ascended-1.0.1.tgz
     version: 1.0.1
-generated: "2024-09-15T14:46:50.515752674Z"
+  - apiVersion: v2
+    appVersion: 0.0.2
+    created: "2024-09-24T17:45:10.970359986Z"
+    description: A Helm chart for Kubernetes
+    digest: 73941134c72f29edd7e18164a63ce76980b3ed5092377205e180d5ace2595534
+    name: ark-survival-ascended
+    type: application
+    urls:
+    - https://github.com/JensDeLeersnyderPXL/Ark-Survival-Ascended-Helm-Chart/releases/download/ark-survival-ascended-0.0.2/ark-survival-ascended-0.0.2.tgz
+    version: 0.0.2
+generated: "2024-09-24T17:45:10.970372149Z"
