@@ -1,4 +1,4 @@
-# This Project contains a helm chart for deploying an ark-surviva-ascended server
+# helm chart for ark-surviva-ascended
 
 # setup
 
