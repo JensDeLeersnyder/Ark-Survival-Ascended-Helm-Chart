@@ -21,8 +21,8 @@ resources:
 
 # internal ports
 ports:
-  server-port: 7790
-  rcon-port: 32330    
+  serverport: 7790
+  rconport: 32330    
 
 env:
   - name: ASA_APPID
@@ -63,8 +63,8 @@ env:
 # Service these are the ports that will be used to expose the deployment to the outside
 service:
   ports:
-    server-port: 30790
-    rcon-port: 32330
+    serverport: 30790
+    rconport: 32330
 
 # where to save the server files
 path: /mnt/local-volumes/asa

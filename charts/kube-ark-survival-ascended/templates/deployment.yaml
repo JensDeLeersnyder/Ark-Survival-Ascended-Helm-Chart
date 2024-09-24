@@ -28,9 +28,9 @@ spec:
         pullPolicy: IfNotPresent
         env:
         - name: RCON_PORT
-          value: "{{ .Values.ports.server-port }}"
+          value: "{{ .Values.ports.serverport }}"
         - name: SERVER_PORT
-          value: "{{ .Values.ports.rcon-port }}"
+          value: "{{ .Values.ports.rconport }}"
           {{- toYaml .Values.env | indent 12 }}
         resources:
           requests:
@@ -40,10 +40,10 @@ spec:
             memory: {{ .Values.resources.limits.memory }}
         ports:
         - name: server-port
-          containerPort: {{ (index (pluck "value" (where .Values.env "name" "SERVER_PORT")) 0) }}
+          containerPort: {{ .Values.ports.serverport }}
           protocol: UDP
         - name: rcon-port
-          containerPort: {{ (index (pluck "value" (where .Values.env "name" "RCON_PORT")) 0) }}
+          containerPort: {{ .Values.ports.rconport }}
           protocol: TCP
         volumeMounts:
           - name: {{ .Release.Name }}-data
