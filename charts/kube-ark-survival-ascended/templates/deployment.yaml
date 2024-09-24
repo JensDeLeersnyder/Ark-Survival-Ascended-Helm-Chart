@@ -1,46 +1,46 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ark-ascended-server
-  namespace: asa
+  name: {{ .Release.Name }}
+  namespace: {{ .Values.namespace}}
   labels:
-    app: ark-ascended-server
+    app: {{ .Release.Name }}
 spec:
   replicas: 1
   strategy:
     type: Recreate
   selector:
     matchLabels:
-      app: ark-ascended-server
+      app: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        namespace: asa
-        app: ark-ascended-server
+        namespace: {{ .Values.namespace}}
+        app: {{ .Release.Name }}
     spec:
       volumes:
-      - name: ark-ascended-server-data
+      - name: {{ .Release.Name }}-data
         persistentVolumeClaim:
-          claimName: ark-ascended-server-data-pvc
+          claimName: {{ .Release.Name }}-data-pvc
       containers:
-      - name: ark-ascended-server
-        image: azixus/ark-ascended-docker:latest
-        envFrom:
-        - configMapRef:
-            name: ark-server-config
+      - name: {{ .Release.Name }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        pullPolicy: IfNotPresent
+        env:
+          {{- toYaml .Values.env | indent 12 }}
         resources:
           requests:
-            memory: 15Gi
+            memory: {{ .Values.resources.requests.memory }}
           limits:
-            cpu: 2
-            memory: 20Gi
+            cpu: {{ .Values.resources.limits.cpu }}
+            memory: {{ .Values.resources.limits.memory }}
         ports:
         - name: server-port
-          containerPort: 7790
+          containerPort: {{ (index (pluck "value" (where .Values.env "name" "SERVER_PORT")) 0) }}
           protocol: UDP
         - name: rcon-port
-          containerPort: 32330
+          containerPort: {{ (index (pluck "value" (where .Values.env "name" "RCON_PORT")) 0) }}
           protocol: TCP
         volumeMounts:
-          - name: ark-ascended-server-data
+          - name: {{ .Release.Name }}-data
             mountPath:  /opt/arkserver

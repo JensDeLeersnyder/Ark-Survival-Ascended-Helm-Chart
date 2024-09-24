@@ -1,8 +1,8 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: ark-ascended-server-data-pvc
-  namespace: asa
+  name: {{ .Release.Name }}-data-pvc
+  namespace: {{ .Values.namespace}}
 spec:
   storageClassName: local-storage
   accessModes:
@@ -14,8 +14,8 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: ark-ascended-server-data
-  namespace: asa
+  name: {{ .Release.Name }}-data
+  namespace: {{ .Values.namespace}}
 spec:
   capacity:
     storage: 50Gi
@@ -25,7 +25,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: local-storage
   local:
-    path: '/mnt/local-volumes/asa'
+    path: '{{ .Values.path}}'
   nodeAffinity:
     required:
       nodeSelectorTerms:

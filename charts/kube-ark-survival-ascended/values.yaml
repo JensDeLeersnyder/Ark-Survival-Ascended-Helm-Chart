@@ -2,106 +2,68 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
+#Deployment
+namespace: asa
+
 replicaCount: 1
 
 image:
-  repository: nginx
+  repository : azixus/ark-ascended-docker
+  tag: latest
   pullPolicy: IfNotPresent
-  # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
 
-imagePullSecrets: []
-nameOverride: ""
-fullnameOverride: ""
+resources:
+  requests:
+    memory: 15Gi
+  limits:
+    cpu: 2
+    memory: 20Gi
 
-serviceAccount:
-  # Specifies whether a service account should be created
-  create: true
-  # Automatically mount a ServiceAccount's API credentials?
-  automount: true
-  # Annotations to add to the service account
-  annotations: {}
-  # The name of the service account to use.
-  # If not set and create is true, a name is generated using the fullname template
-  name: ""
+env:
+  - name: ASA_APPID
+    value: "2430930"
+  - name: SERVER_MAP
+    value: "Aberration_WP"
+  - name: SESSION_NAME
+    value: "JensServer"
+  - name: SERVER_PORT
+    value: "7790"
+  - name: MAX_PLAYERS
+    value: "10"
+  - name: SERVER_SHUTDOWN_TIMEOUT
+    value: "30"
+  - name: ARK_ADMIN_PASSWORD
+    value: "MyArkAdminPassword"
+  - name: RCON_PORT
+    value: "32330"
+  - name: DISABLE_BATTLEYE
+    value: "1"
+  - name: MODS
+    value: "935408,947033,937546,931047,928708,933099,939228,950914,938777,930494"
+  - name: ARK_EXTRA_OPTS
+    value: "?ServerCrosshair=true?OverrideStructurePlatformPrevention=true?OverrideOfficialDifficulty=5.0?ShowFloatingDamageText=true?AllowFlyerCarryPvE=true"
+  - name: ARK_EXTRA_DASH_OPTS
+    value: "-ForceAllowCaveFlyers -ForceRespawnDinos -AllowRaidDinoFeeding=true -ActiveEvent=Summer"
+  - name: PUID
+    value: "1000"
+  - name: PGID
+    value: "1000"
+  - name: TINI_VERSION
+    value: "v0.19.0"
+  - name: LOG_FILE
+    value: "/opt/arkserver/ShooterGame/Saved/Logs/ShooterGame.log"
+  - name: PID_FILE
+    value: "/opt/arkserver/.server.pid"
+  - name: STEAM_COMPAT_CLIENT_INSTALL_PATH
+    value: "/home/arkuser/.steam/steam"
+  - name: STEAM_COMPAT_DATA_PATH
+    value: "/home/arkuser/.steam/steam/steamapps/compatdata/2430930"
 
-podAnnotations: {}
-podLabels: {}
-
-podSecurityContext: {}
-  # fsGroup: 2000
-
-securityContext: {}
-  # capabilities:
-  #   drop:
-  #   - ALL
-  # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
-  # runAsUser: 1000
-
+# Service these are the ports that will be used to expose the deployment to the outside
 service:
-  type: ClusterIP
-  port: 80
+  ports:
+    server-port: 30790
+    rcon-port: 32330
 
-ingress:
-  enabled: false
-  className: ""
-  annotations: {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
-  hosts:
-    - host: chart-example.local
-      paths:
-        - path: /
-          pathType: ImplementationSpecific
-  tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
-
-resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #   cpu: 100m
-  #   memory: 128Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 128Mi
-
-livenessProbe:
-  httpGet:
-    path: /
-    port: http
-readinessProbe:
-  httpGet:
-    path: /
-    port: http
-
-autoscaling:
-  enabled: false
-  minReplicas: 1
-  maxReplicas: 100
-  targetCPUUtilizationPercentage: 80
-  # targetMemoryUtilizationPercentage: 80
-
-# Additional volumes on the output Deployment definition.
-volumes: []
-# - name: foo
-#   secret:
-#     secretName: mysecret
-#     optional: false
-
-# Additional volumeMounts on the output Deployment definition.
-volumeMounts: []
-# - name: foo
-#   mountPath: "/etc/foo"
-#   readOnly: true
-
-nodeSelector: {}
-
-tolerations: []
-
-affinity: {}
+# where to save the server files
+path: /mnt/local-volumes/asa
