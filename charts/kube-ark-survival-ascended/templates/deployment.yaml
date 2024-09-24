@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ .Release.Name }}
-  namespace: {{ .Values.namespace}}
+  namespace: {{ .Values.namespace }}
   labels:
     app: {{ .Release.Name }}
 spec:
@@ -15,7 +15,7 @@ spec:
   template:
     metadata:
       labels:
-        namespace: {{ .Values.namespace}}
+        namespace: {{ .Values.namespace }}
         app: {{ .Release.Name }}
     spec:
       volumes:
@@ -28,9 +28,9 @@ spec:
         pullPolicy: IfNotPresent
         env:
         - name: RCON_PORT
-          value: "{{ .Values.ports.server-port}}"
+          value: "{{ .Values.ports.server-port }}"
         - name: SERVER_PORT
-          value: "{{ .Values.ports.rcon-port}}"
+          value: "{{ .Values.ports.rcon-port }}"
           {{- toYaml .Values.env | indent 12 }}
         resources:
           requests:
