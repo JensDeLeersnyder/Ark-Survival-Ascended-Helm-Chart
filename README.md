@@ -1,4 +1,4 @@
-# helm chart for ark-surviva-ascended
+# Helm chart for ark-surviva-ascended
 
 # setup
 
