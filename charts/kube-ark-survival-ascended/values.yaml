@@ -47,3 +47,4 @@ service:
 
 # where to save the server files
 path: /mnt/local-volumes/asa
+storageClassName: default

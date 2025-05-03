@@ -17,13 +17,13 @@ chown -R steam:steam /mnt/local-volumes/asa
 
 ### 2. Helm deployment
 ``` bash
- helm repo add jensdl https://jensdeleersnyderpxl.github.io/Ark-Survival-Ascended-Helm-Chart/
+ helm repo add jensdl https://jensdeleersnyder.github.io/Ark-Survival-Ascended-Helm-Chart/
 
  helm install myark-ascended-server jensdl/ark-survival-ascended
 ```
 
 ### 3. Configuration
-You can customize your deployment by modifying the values.yaml file. The default values.yaml can be found here: [values.yaml](https://github.com/JensDeLeersnyderPXL/Ark-Survival-Ascended-Helm-Chart/blob/main/charts/kube-ark-survival-ascended/values.yaml)
+You can customize your deployment by modifying the values.yaml file. The default values.yaml can be found here: [values.yaml](https://github.com/JensDeLeersnyder/Ark-Survival-Ascended-Helm-Chart/blob/main/charts/kube-ark-survival-ascended/values.yaml)
 
 You can use your custom values by using the following command: 
 ``` bash
